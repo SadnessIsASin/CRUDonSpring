@@ -22,7 +22,6 @@ import java.util.UUID;
 @AllArgsConstructor
 public class Incident {
 
-
     @Id
     @UuidGenerator
     @JdbcTypeCode(Types.VARCHAR)
@@ -41,6 +40,5 @@ public class Incident {
     private LocalDateTime createdAt;
 
     private LocalDateTime closedAt;
-
 
 }

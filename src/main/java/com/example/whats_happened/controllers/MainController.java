@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/rest")
@@ -30,6 +31,7 @@ public class MainController {
     @PostMapping("/post-incident")
     public void addIncident(@RequestBody Incident incident) {
         incidentService.saveIncident(incident);
+        System.out.println("Incident saved");
     }
 
     @PutMapping("/update-incident/{id}")
