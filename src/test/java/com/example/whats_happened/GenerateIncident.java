@@ -37,16 +37,16 @@ public class GenerateIncident {
 
     public static void sendIncident() throws IOException, InterruptedException {
         String requestBody = ConvertObjectToJson().writeValueAsString(createIncident());
-        log.info(requestBody);
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8080/rest/post-incident"))
+                .uri(URI.create("http://localhost:8181/rest/post-incident"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();
 
         HttpClient client = HttpClient.newHttpClient();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        log.info(String.valueOf(response.statusCode()));
     }
 
 }
