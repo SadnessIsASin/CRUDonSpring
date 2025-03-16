@@ -19,6 +19,17 @@ public class MainController {
         this.incidentService = incidentService;
     }
 
+    @GetMapping
+    public String helloPage(){
+        return "For information on incidents, please use the links:\n" +
+                "/get-all-incidents\n" +
+                "/get-incident/{id}\n" +
+                "/post-incident\n" +
+                "/update-incident/{id}\n" +
+                "/delete-incident/{id}";
+    }
+
+
     @GetMapping("/get-all-incidents")
     public List<Incident> getAllIncidents() {
         log.info("All incidents received");
