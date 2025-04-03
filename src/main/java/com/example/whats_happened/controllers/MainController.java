@@ -10,7 +10,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/rest")
-@Slf4j
 public class MainController {
 
     private final IncidentService incidentService;
@@ -32,34 +31,29 @@ public class MainController {
 
     @GetMapping("/get-all-incidents")
     public List<Incident> getAllIncidents() {
-        log.info("All incidents received");
         return incidentService.getAllIncidents();
     }
 
     @GetMapping("/get-incident/{id}")
     public Incident getIncident(@PathVariable UUID id) {
-        log.info("Incident received with id=" + id);
         return incidentService.getIncidentById(id);
     }
 
     @PostMapping("/post-incident")
     public void addIncident(@RequestBody Incident incident) {
         incidentService.saveIncident(incident);
-        log.info("Incident saved, id=" + incident.getId());
     }
 
     @PutMapping("/update-incident/{id}")
     public Incident updateIncident(@PathVariable UUID id, @RequestBody Incident incident) {
         incident.setId(id);
-        log.info("Incident updated with id=" + id);
-        return incidentService.updateIncident(incident);
 
+        return incidentService.updateIncident(incident);
     }
 
     @DeleteMapping("/delete-incident/{id}")
     public void deleteIncident(@PathVariable UUID id) {
         incidentService.deleteIncidentById(id);
-        log.info("Incident deleted with id=" + id);
     }
 
 }

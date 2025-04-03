@@ -13,7 +13,6 @@ import java.sql.Types;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-
 @Entity
 @Table(name = "incident")
 @Getter
