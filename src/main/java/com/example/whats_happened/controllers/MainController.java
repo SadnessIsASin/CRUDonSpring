@@ -28,7 +28,6 @@ public class MainController {
                 "/delete-incident/{id}";
     }
 
-
     @GetMapping("/get-all-incidents")
     public List<Incident> getAllIncidents() {
         return incidentService.getAllIncidents();
@@ -47,7 +46,6 @@ public class MainController {
     @PutMapping("/update-incident/{id}")
     public Incident updateIncident(@PathVariable UUID id, @RequestBody Incident incident) {
         incident.setId(id);
-
         return incidentService.updateIncident(incident);
     }
 
