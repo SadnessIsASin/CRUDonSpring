@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,6 +32,9 @@ public class IncidentService {
     }
 
     public Incident saveIncident(Incident incident){
+        if(incident.getCreatedAt() == null){
+            incident.setCreatedAt(LocalDateTime.now());
+        }
         log.info("Incident saved, id=" + incident.getId());
         return incidentRepository.save(incident);
     }

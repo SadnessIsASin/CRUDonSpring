@@ -38,6 +38,4 @@ public class Incident {
 
     private LocalDateTime createdAt;
 
-    private LocalDateTime closedAt;
-
 }

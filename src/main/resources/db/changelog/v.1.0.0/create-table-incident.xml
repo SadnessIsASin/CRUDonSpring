@@ -10,9 +10,6 @@
             <column name="id" type="varchar (36)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="closed_at" type="timestamp">
-                <constraints nullable="false"/>
-            </column>
             <column name="created_at" type="timestamp">
                 <constraints nullable="false"/>
             </column>

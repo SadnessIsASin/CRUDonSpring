@@ -27,7 +27,6 @@ public class GenerateIncident {
         incident.setLocation("location");
         incident.setStatus("status");
         incident.setCreatedAt(LocalDateTime.now());
-        incident.setClosedAt(LocalDateTime.now());
         return incident;
     }
 

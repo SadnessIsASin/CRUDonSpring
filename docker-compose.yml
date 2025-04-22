@@ -1,6 +1,7 @@
 version: '3.8'
+
 services:
-  client-backend:
+  client-backend: # Бэкенд (Spring Boot)
     image: client:0.0.1
     build:
       context: .
@@ -10,10 +11,10 @@ services:
     depends_on:
       - service-db
     environment:
-      - SERVER_PORT= 8181
+      - SERVER_PORT=8181
       - SPRING_DATASOURCE_URL=jdbc:postgresql://service-db/incidents
 
-  service-db:
+  service-db: # База данных PostgreSQL
     image: postgres:14.7-alpine
     environment:
       - POSTGRES_PASSWORD=password
@@ -26,6 +27,16 @@ services:
       - db-data:/var/lib/postgresql/data
     restart: unless-stopped
 
+  client-frontend: # Фронтенд (React с nginx)
+    build:
+      context: ./src/main/react # Путь к папке с React-приложением
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80" # Открытие порта 3000 для доступа к фронтенду
+    depends_on:
+      - client-backend # Убедитесь, что бэкенд запущен перед фронтендом
+    environment:
+      - REACT_APP_API_URL=http://client-backend:8181/api # URL бэкенда для API
+
 volumes:
   db-data:
-  pgadmin-data:
