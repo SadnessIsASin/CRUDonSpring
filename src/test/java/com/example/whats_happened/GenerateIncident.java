@@ -25,7 +25,7 @@ public class GenerateIncident {
         incident.setDescription("description");
         incident.setType("type");
         incident.setLocation("location");
-        incident.setStatus("status");
+        incident.setStatus("Открыт");
         incident.setCreatedAt(LocalDateTime.now());
         return incident;
     }
@@ -38,7 +38,7 @@ public class GenerateIncident {
         String requestBody = ConvertObjectToJson().writeValueAsString(createIncident());
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8181/rest/post-incident"))
+                .uri(URI.create("http://localhost:8181/api/post-incident"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();

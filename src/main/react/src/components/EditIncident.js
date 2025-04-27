@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { TextField, Button, Container, Typography, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import { useParams, useNavigate } from 'react-router-dom';
+import {updateIncident} from "../services/api";
 
 const EditIncident = () => {
     const { id } = useParams(); // Получаем ID инцидента из URL
@@ -41,7 +42,7 @@ const EditIncident = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.put(`/update-incident/${id}`, { name, description, status }); // PUT-запрос для обновления данных
+            await updateIncident(id, name, description, status);// PUT-запрос для обновления данных
             navigate('/'); // Перенаправляем пользователя на главную страницу
         } catch (error) {
             console.error('Ошибка при обновлении инцидента:', error.response?.data || error.message);
