@@ -32,15 +32,20 @@ public class MainController {
     public void addIncident(@RequestBody Incident incident) {
         incidentService.saveIncident(incident);
     }
-
-
-    @PutMapping("/update-incident/{id}")
+    
+    @PatchMapping("/update-incident/{id}")
     public void updateIncident(@PathVariable UUID id, @RequestBody Incident incident) {
         Incident existingIncident = incidentService.getIncidentById(id);
 
-        existingIncident.setName(incident.getName());
-        existingIncident.setDescription(incident.getDescription());
-        existingIncident.setStatus(incident.getStatus());
+        if(incident.getName() != null) {
+            existingIncident.setName(incident.getName());
+        }
+        if(incident.getDescription() != null) {
+            existingIncident.setDescription(incident.getDescription());
+        }
+        if (incident.getStatus() != null) {
+            existingIncident.setStatus(incident.getStatus());
+        }
 
         incidentService.saveIncident(existingIncident);
     }

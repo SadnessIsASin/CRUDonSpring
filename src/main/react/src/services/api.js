@@ -21,7 +21,7 @@ export const deleteIncident = async (id) => {
 
 export const updateIncident = async (id, name, description, status) => {
     try {
-        await axios.put(`http://localhost:8181/api/update-incident/${id}`, { name, description, status });
+        await axios.patch(`http://localhost:8181/api/update-incident/${id}`, { name, description, status });
     } catch (error) {
         console.error('Ошибка при обновлении инцидента:', error.response?.data || error.message);
     }

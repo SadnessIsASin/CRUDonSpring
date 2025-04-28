@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
+import { Table, TableBody, TableCell, TableHead, TableRow, Paper, Button } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import { fetchIncidents, deleteIncident } from '../services/api'; // Импортируем API-функции
+import { fetchIncidents, deleteIncident } from '../services/api';
 import * as XLSX from 'xlsx';
 
 const IncidentList = () => {
@@ -26,16 +26,14 @@ const IncidentList = () => {
 
     const handleDelete = async (id) => {
         try {
-            await deleteIncident(id); // Используем функцию из api.js
-            loadIncidents(); // Обновляем список после удаления
+            await deleteIncident(id);
+            loadIncidents();
         } catch (error) {
             console.error('Ошибка при удалении инцидента:', error);
         }
     };
 
-    // Функция для экспорта данных в Excel
     const exportToExcel = () => {
-        // Подготовка данных для экспорта
         const formattedData = incidents.map((incident) => ({
             ID: incident.id,
             Название: incident.name,
@@ -48,20 +46,15 @@ const IncidentList = () => {
                 : '-',
         }));
 
-        // Создаем рабочую книгу и лист
         const worksheet = XLSX.utils.json_to_sheet(formattedData);
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Инциденты');
-
-        // Экспортируем файл
         XLSX.writeFile(workbook, 'Инциденты.xlsx');
     };
 
     return (
         <div>
             <h2>Список инцидентов</h2>
-
-            {/* Кнопка для выгрузки данных в Excel */}
             <Button
                 variant="contained"
                 color="primary"
@@ -70,7 +63,6 @@ const IncidentList = () => {
             >
                 Выгрузить в Excel
             </Button>
-
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
