@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table, TableBody, TableCell, TableHead, TableRow, Paper, Button } from '@mui/material';
+import {Table, TableBody, TableCell, TableHead, TableRow, Paper, Button, TableContainer} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
 import { fetchIncidents, deleteIncident } from '../services/api';
 import * as XLSX from 'xlsx';
@@ -27,7 +27,7 @@ const IncidentList = () => {
     const handleDelete = async (id) => {
         try {
             await deleteIncident(id);
-            loadIncidents();
+            await loadIncidents();
         } catch (error) {
             console.error('Ошибка при удалении инцидента:', error);
         }
