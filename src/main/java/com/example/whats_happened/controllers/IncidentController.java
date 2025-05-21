@@ -46,7 +46,7 @@ public class IncidentController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @PatchMapping("/update{id}")
+    @PatchMapping("/update/{id}")
     public ResponseEntity<Void> updateIncident(@PathVariable UUID id, @RequestBody Incident incident) {
         log.info("Получен PATCH-запрос /api/incidents/{}: {}", id, incident);
         incidentService.updateIncident(id, incident);
