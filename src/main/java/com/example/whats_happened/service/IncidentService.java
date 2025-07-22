@@ -1,6 +1,5 @@
 package com.example.whats_happened.service;
 
-import com.example.whats_happened.exception.ResourceNotFoundException;
 import com.example.whats_happened.entity.Incident;
 import com.example.whats_happened.repository.IncidentRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -27,8 +26,8 @@ public class IncidentService {
     }
 
     public Incident getIncidentById(UUID id){
-        return incidentRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Ошибка поиска инцидента с ID:" + id));
+        return incidentRepository.findById(id).
+                orElseThrow(()-> new RuntimeException("Инцидент с id = " + id + " не найден"));
     }
 
     public void saveIncident(Incident incident){
@@ -53,7 +52,6 @@ public class IncidentService {
 
         incidentRepository.save(existing);
     }
-
 
     public void deleteIncidentById(UUID id){
         if(incidentRepository.findById(id).isPresent()){

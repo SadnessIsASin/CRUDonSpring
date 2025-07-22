@@ -38,7 +38,7 @@ public class GenerateIncident {
         String requestBody = ConvertObjectToJson().writeValueAsString(createIncident());
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8181/api/post-incident"))
+                .uri(URI.create("http://localhost:8080/api/incidents/add"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                 .build();

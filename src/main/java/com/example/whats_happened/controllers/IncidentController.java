@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/incidents")
+@RequestMapping("/api")
 @Slf4j
 @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class IncidentController {
